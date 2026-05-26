@@ -5,7 +5,7 @@ module.exports = {
   jsxSingleQuote: true,
   printWidth: 120,
   tabWidth: 2,
-  tabs: false,
+  useTabs: false,
   arrowParens: 'always', // Needed for the type in Typescript
   bracketSpacing: true,
   bracketSameLine: true,
