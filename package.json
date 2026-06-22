@@ -51,6 +51,7 @@
   "devDependencies": {
     "@tsconfig/node22": "^22.0.5",
     "@vitest/coverage-v8": "^4.1.7",
+    "@vitest/eslint-plugin": "^1.6.20",
     "eslint": "^10.4.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",

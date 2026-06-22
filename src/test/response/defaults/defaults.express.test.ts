@@ -153,7 +153,7 @@ describe('response - Defaults from "express.Express" (accepts no arguments and r
     expect(res.type('test')).toBe(res)
   })
 
-  test('res.format is a mocked function ', () => {
+  test('res.format is a mocked function', () => {
     const { res } = getMockRes()
 
     expect(res.format).toBeDefined()
@@ -249,7 +249,7 @@ describe('response - Defaults from "express.Express" (accepts no arguments and r
     expect(res.clearCookie('test')).toBe(res)
   })
 
-  test('res.cookie is a mocked function ', () => {
+  test('res.cookie is a mocked function', () => {
     const { res } = getMockRes()
 
     expect(res.cookie).toBeDefined()
