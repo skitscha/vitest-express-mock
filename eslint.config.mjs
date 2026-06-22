@@ -9,16 +9,6 @@ export default defineConfig([
   ...tseslint.configs.recommended,
   eslintPluginPrettierRecommended,
   {
-    languageOptions: {
-      ecmaVersion: 2022,
-      sourceType: 'module',
-      // The library and its tests rely on Vitest globals (`vi`, `expect`, ...)
-      globals: {
-        ...vitest.environments.env.globals,
-      },
-    },
-  },
-  {
     files: ['src/test/**/*.test.ts'],
     plugins: { vitest },
     rules: {
