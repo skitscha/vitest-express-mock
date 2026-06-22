@@ -1,21 +1,21 @@
-# vitest-mock-express
+# vitest-express-mock
 
-A lightweight Vitest mock for unit testing Express
+A lightweight Vitest mock for unit testing Express 5
 
-THIS IS A FORK OF [@jest-mock/express](https://github.com/bikk-uk/jest-mock-express) ALL CREDITS GOES TO THE ORIGINAL AUTHOR
+This is a fork of [@jest-mock/express](https://github.com/bikk-uk/jest-mock-express), which itself was forked into [vitest-mock-express](https://github.com/eagleera/vitest-mock-express). This package continues that work with Express 5 support. All credit for the original implementation goes to the upstream authors.
 
 ## Getting Started
 
 Installation:
 
-`yarn add --dev vitest-mock-express`
+`yarn add --dev vitest-express-mock`
 
-`npm install --save-dev vitest-mock-express`
+`npm install --save-dev vitest-express-mock`
 
 Importing:
 
 ```typescript
-import { getMockReq, getMockRes } from 'vitest-mock-express'
+import { getMockReq, getMockRes } from 'vitest-express-mock'
 ```
 
 ## Usage

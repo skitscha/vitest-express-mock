@@ -1,6 +1,6 @@
 // Types
 import { describe, test, expect } from 'vitest'
-import type { Request } from 'express-serve-static-core'
+import type { Request } from 'express'
 
 // Tested Module
 import getMockReq from '../../../request/request'
