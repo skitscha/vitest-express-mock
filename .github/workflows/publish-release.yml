@@ -1,32 +1,70 @@
-name: Publish Release
+name: Release
 
+# Manual release: bumps the version, creates the git tag + GitHub Release,
+# and publishes to npm — all from a single "Run workflow" click.
 on:
-  release:
-    types: [created]
+  workflow_dispatch:
+    inputs:
+      release-type:
+        description: 'Semver bump to apply'
+        required: true
+        default: patch
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+# Avoid two releases racing each other.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  contents: write # push the version commit/tag and create the GitHub Release
+  id-token: write # npm provenance
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
         with:
-          node-version: 24
-          check-latest: true
-      - run: npm ci
-      - run: npm run test-verbose
+          fetch-depth: 0
 
-  publish-npm:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
           node-version: 24
           check-latest: true
           registry-url: https://registry.npmjs.org
+
       - run: npm ci
-      - run: npm publish --access public
+
+      - name: Validate (lint + test)
+        run: |
+          npm run lint
+          npm test
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump version and create tag
+        id: bump
+        run: |
+          npm version "${{ inputs.release-type }}" -m "chore(release): %s"
+          echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Push commit and tag
+        run: git push --follow-tags
+
+      - name: Publish to npm
+        run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create "v${{ steps.bump.outputs.version }}" --title "v${{ steps.bump.outputs.version }}" --generate-notes
