@@ -43,6 +43,7 @@
   },
   "homepage": "https://github.com/skitscha/vitest-express-mock#readme",
   "devDependencies": {
+    "@tsconfig/node24": "^24.0.4",
     "@vitest/coverage-v8": "^4.1.7",
     "eslint": "^10.4.0",
     "eslint-config-prettier": "^10.1.8",
