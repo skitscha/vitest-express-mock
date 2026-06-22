@@ -42,8 +42,11 @@
     "url": "https://github.com/skitscha/vitest-express-mock/issues"
   },
   "homepage": "https://github.com/skitscha/vitest-express-mock#readme",
+  "engines": {
+    "node": ">=22"
+  },
   "devDependencies": {
-    "@tsconfig/node24": "^24.0.4",
+    "@tsconfig/node22": "^22.0.5",
     "@vitest/coverage-v8": "^4.1.7",
     "eslint": "^10.4.0",
     "eslint-config-prettier": "^10.1.8",
